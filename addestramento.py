@@ -89,7 +89,7 @@ def main():
     sample_weights = compute_sample_weight(class_weight='balanced', y=y_train)
     target_names = le.inverse_transform(range(len(le.classes_)))
 
-    # 4. Configurazione Ablation Study
+    # 4. Configurazioni
     context_cols = [col for col in X_train_full.columns if col.startswith('Context_')]
     time_cols = ['Elapsed_Time_Days']
 
@@ -99,7 +99,7 @@ def main():
         "3. ACTIVITY + TIME + CONTEXT": []
     }
 
-    print("\n3/4 - Avvio Addestramento Multiplo (Ablation Study)...")
+    print("\n3/4 - Avvio Addestramento per le tre configurazioni")
     results = []
 
     for config_name, drop_cols in configurations.items():
