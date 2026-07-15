@@ -74,8 +74,8 @@ def build_features(df: pd.DataFrame, w2v_model: Word2Vec):
                 # 2. Vettorializzazione Word2Vec
                 context_vectors_list.append(get_average_vector(contexts[:i], w2v_model, VECTOR_SIZE))
                 
-                # 3. Tempo Trascorso
-                elapsed_times.append((dates[i-1] - dates[0]).days)
+               # 3. Tempo Trascorso (Nuova versione in ORE)
+                elapsed_times.append((dates[i-1] - dates[0]).total_seconds() / 3600.0)
                 
                 # 4. Target & ID
                 next_activities.append(activities[i])
@@ -100,7 +100,7 @@ def main():
     print("\n4/4 - Creazione del tabellone matematico finale...")
     df_base = pd.DataFrame({
         'PATIENT': p_ids,
-        'Elapsed_Time_Days': times,
+        'Elapsed_Time_Hours': times,
         'Target_Next_Activity': targets
     })
     

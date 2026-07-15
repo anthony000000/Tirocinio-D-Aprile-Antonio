@@ -31,7 +31,7 @@ def load_and_clean_data(filepath: str) -> pd.DataFrame:
     """Carica il pickle, ordina e rimuove allergie."""
     print("1/4 - Caricamento e pulizia dati...")
     df = pd.read_pickle(filepath)
-    df = df.sort_values(by=['PATIENT', 'Elapsed_Time_Days']).reset_index(drop=True)
+    df = df.sort_values(by=['PATIENT', 'Elapsed_Time_Hours']).reset_index(drop=True)
     
     cols_to_drop = [col for col in df.columns if 'allergy' in col.lower()]
     if cols_to_drop:
@@ -91,7 +91,7 @@ def main():
 
     # 4. Configurazioni
     context_cols = [col for col in X_train_full.columns if col.startswith('Context_')]
-    time_cols = ['Elapsed_Time_Days']
+    time_cols = ['Elapsed_Time_Hours']
 
     configurations = {
         "1. SOLO ACTIVITY": context_cols + time_cols,
